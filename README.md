@@ -38,9 +38,11 @@ With our toolbox in hand, let's see what we're getting into with this Capstone!
 4. Configuration:
 4.1 requirements.txt: I don't use pip freeze > requirements.txt because there is problem with cloud-init, so I manually write a requirements.txt which can solve this problem
 4.2 run our local migrations using our manage.py file, to mirror how Heroku will run behind the scenes for us when we deploy our application:
+```
 python manage.py db init
 python manage.py db migrate
 python manage.py db upgrade
+```
 During this process, keep the database and password are from locally
 5. Deploy
 Use the reference from Heroku to push to git
