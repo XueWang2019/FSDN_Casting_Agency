@@ -47,39 +47,47 @@ During this process, keep the database and password are from locally
 5. Deploy
 Use the reference from Heroku to push to git
 
-6. Add postgresql add on for our database After step 5, I add postgresql add on for our database, use below command: heroku addons:create heroku-postgresql:hobby-dev --app casting-agency-liu
-
+6. Add postgresql add on for our database After step 5, I add postgresql add on for our database, use below command: 
+```
+heroku addons:create heroku-postgresql:hobby-dev --app casting-agency-liu
+```
 Use below command, you can check your configuration variables in Heroku. You will see DATABASE_URL and the URL of the database you just created.
+```
+heroku config --app name_of_your_application
+```
 
 7. Modify the database link Now replace the DATABASE_URL with the one generated at setp6 in your py file
 
 8. Now push changes in git use git pull
+```
 git pull heroku master
+```
+
 
 ## Documentation of API behavior and RBAC controls
 Casting Agency Specifications
 The Casting Agency models a company that is responsible for creating movies and managing and assigning actors to those movies. You are an Executive Producer within the company and are creating a system to simplify and streamline your process.
 
-Models:
-  Movies with attributes title and release date
-  Actors with attributes name, age and gender
+Models:  
+  Movies with attributes title and release date  
+  Actors with attributes name, age and gender  
 Endpoints:
     GET /actors and /movies   
-    DELETE /actors/ and /movies/    
-    POST /actors and /movies and    
-    PATCH /actors/ and /movies/   
-Roles:
-  Casting Assistant:
-    Can view actors and movies
-  Casting Director
-    All permissions a Casting Assistant has and…
-    Add or delete an actor from the database
-    Modify actors or movies
-  Executive Producer
-    All permissions a Casting Director has and…
-    Add or delete a movie from the database
-Tests:
-  One test for success behavior of each endpoint
-  One test for error behavior of each endpoint
-  At least two tests of RBAC for each role
+    DELETE /actors/ and /movies/      
+    POST /actors and /movies and      
+    PATCH /actors/ and /movies/     
+Roles:  
+  Casting Assistant:  
+    Can view actors and movies  
+  Casting Director:  
+    All permissions a Casting Assistant has and…  
+    Add or delete an actor from the database  
+    Modify actors or movies  
+  Executive Producer  
+    All permissions a Casting Director has and…  
+    Add or delete a movie from the database  
+Tests:  
+  One test for success behavior of each endpoint  
+  One test for error behavior of each endpoint  
+  At least two tests of RBAC for each role  
 
