@@ -71,11 +71,13 @@ The Casting Agency models a company that is responsible for creating movies and 
 Models:  
 * Movies with attributes title and release date  
 * Actors with attributes name, age and gender  
+
 Endpoints:
 * GET /actors and /movies   
 * DELETE /actors/ and /movies/      
 * POST /actors and /movies and      
-* PATCH /actors/ and /movies/     
+* PATCH /actors/ and /movies/    
+ 
 Roles:  
 * Casting Assistant:  
   *  Can view actors and movies  
@@ -86,6 +88,7 @@ Roles:
  Executive Producer  
    * All permissions a Casting Director has and…  
    * Add or delete a movie from the database  
+     
 Tests:  
   * One test for success behavior of each endpoint  
   * One test for error behavior of each endpoint  
