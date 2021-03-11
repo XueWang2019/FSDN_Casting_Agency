@@ -83,9 +83,9 @@ Roles:
   * All permissions a Casting Assistant has and…  
   * Add or delete an actor from the database  
   * Modify actors or movies  
-  Executive Producer  
-    * All permissions a Casting Director has and…  
-    * Add or delete a movie from the database  
+ Executive Producer  
+   * All permissions a Casting Director has and…  
+   * Add or delete a movie from the database  
 Tests:  
   * One test for success behavior of each endpoint  
   * One test for error behavior of each endpoint  
