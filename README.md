@@ -25,7 +25,7 @@ With our toolbox in hand, let's see what we're getting into with this Capstone!
 
 ## Project dependencies, local development and hosting instructions,
 ### Key Dependencies
-* Python 3.7
+* Python 3.8
 * Flask 
 * SQLAlchemy 
 * Flask-CORS 
@@ -93,4 +93,69 @@ Tests:
   * One test for success behavior of each endpoint  
   * One test for error behavior of each endpoint  
   * At least two tests of RBAC for each role  
+
+### API Endpoint  
+```
+GET '/'
+*  Home Route
+*  Return message:
+ {
+  "message": "Hello,hello, World!"
+}
+
+GET '/movies':  
+* Get movie's name
+*  Return:  
+ {
+                    "success": True,
+                    "movie name": movie
+                }
+ GET '/actors':
+ * Get actors' name
+ * Return:{
+                    "success": True,
+                    "actor": actor
+                }
+                
+ POST '/movies':
+ * Add movies
+ * Return {
+                    "success": True,
+                    "title": title,
+                    "release_date": release_date
+                }
+                
+ POST '/actors'
+ * Add actors
+ * Return:  {
+                    "success": True,
+                    "name": name,
+                    "age": age,
+                    "gender": gender
+                }
+                
+ PATCH '/movies/<int:id>'  
+ *  Edit movies
+ *  Return added movie's detail
+ *  {"success": True, "movie": [movies.details()]}
+
+PATCH '/actors/<int:id>'
+*  Edit actors
+*  Return: {"success": True, "actor": [actors.details()]}
+
+DELETE '/movies/<int:id>'
+* Delete movies
+* Return {
+                    "success": True,
+                    "delete": id
+                }
+                
+DELET '/actors/<int:id>' 
+* Delete actors
+* Return {
+                    "success": True,
+                    "delete": id
+                }
+                
+
 
