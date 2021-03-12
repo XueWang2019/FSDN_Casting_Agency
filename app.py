@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import json
 
-from models import setup_db, Movie, Actor, Scene,db_drop_and_create_all
+from models import setup_db, Movie, Actor, Scene, db_drop_and_create_all
 from auth import AuthError, requires_auth
 
 from datetime import datetime
@@ -17,9 +17,7 @@ def create_app(test_config=None):
     CORS(app)
 
     """ uncomment at the first time running the app """
-    #db_drop_and_create_all()
-
-
+    # db_drop_and_create_all()
 
     @app.route('/', methods=['GET'])
     def home():
@@ -30,8 +28,8 @@ def create_app(test_config=None):
     def get_movies(payload):
         try:
             movies = Movie.query.order_by(Movie.release_date).all()
-            movie=[]
-            movie=[mov.release_date for mov in movies]
+            movie = []
+            movie = [mov.release_date for mov in movies]
             return jsonify(
                 {
                     "success": True,
@@ -46,14 +44,14 @@ def create_app(test_config=None):
     def get_actors(payload):
         try:
             actors = Actor.query.order_by(Actor.name).all()
-            actor= []
-            actor= [act.name for act in actors]
+            actor = []
+            actor = [act.name for act in actors]
             return jsonify(
                 {
                     "success": True,
                     "actor": actor
                 }
-            ),200
+            ), 200
         except:
             abort(500)
 
@@ -63,7 +61,7 @@ def create_app(test_config=None):
         try:
             body = request.get_json()
             title = body.get('title')
-            release_date=body.get('release_date')
+            release_date = body.get('release_date')
 
             if title is None:
                 abort(400)
@@ -73,8 +71,8 @@ def create_app(test_config=None):
             return jsonify(
                 {
                     "success": True,
-                    "title":title,
-                    "release_date":release_date
+                    "title": title,
+                    "release_date": release_date
                 }
             ), 200
         except:
@@ -92,7 +90,7 @@ def create_app(test_config=None):
             if name is None:
                 abort(404)
             else:
-                actor = Actor(name=name, age=age,gender=gender)
+                actor = Actor(name=name, age=age, gender=gender)
 
             actor.insert()
             return jsonify(
@@ -102,32 +100,32 @@ def create_app(test_config=None):
                     "age": age,
                     "gender": gender
                 }
-            ),200
+            ), 200
         except:
             abort(422)
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth("patch:movies")
-    def update_movies(payload,id):
-        req=request.get_json()
-        movies=Movie.query.filter(Movie.id==id).one_or_none()
+    def update_movies(payload, id):
+        req = request.get_json()
+        movies = Movie.query.filter(Movie.id == id).one_or_none()
         if not movies:
             abort(404)
         try:
-            req_title=req.get('title')
-            req_release_date=req.get('release_date')
+            req_title = req.get('title')
+            req_release_date = req.get('release_date')
             if req_title:
-                movies.title=req_title
+                movies.title = req_title
             if req_release_date:
-                movies.release_date=req_release_date
+                movies.release_date = req_release_date
         except Exception as e:
             print(e)
             abort(401)
-        return jsonify({"success":True,"movie":[movies.details()]}),200
+        return jsonify({"success": True, "movie": [movies.details()]}), 200
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth("patch:actors")
-    def update_actors(payload,id):
+    def update_actors(payload, id):
         req = request.get_json()
         actors = Actor.query.filter(Actor.id == id).one_or_none()
         if not actors:
@@ -150,9 +148,9 @@ def create_app(test_config=None):
 
     @app.route('/movies/<int:id>', methods=['DELETE'])
     @requires_auth("delete:movies")
-    def delete_movies(payload,id):
+    def delete_movies(payload, id):
         try:
-            movie=Movie.query.filter(Movie.id==id).one_or_none()
+            movie = Movie.query.filter(Movie.id == id).one_or_none()
             if movie is None:
                 abort(404)
             movie.delete()
@@ -167,7 +165,7 @@ def create_app(test_config=None):
 
     @app.route('/actors/<int:id>', methods=['DELETE'])
     @requires_auth("delete:actors")
-    def delete_actors(payload,id):
+    def delete_actors(payload, id):
         try:
             actor = Actor.query.filter(Actor.id == id).one_or_none()
             if actor is None:
@@ -223,9 +221,8 @@ def create_app(test_config=None):
         }), e.status_code
 
     return app
-
 app = create_app()
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT",5000))
-    app.run(host='127.0.0.1',port=port,debug=True)
+    app.run(host='127.0.0.1', port=port, debug=True)

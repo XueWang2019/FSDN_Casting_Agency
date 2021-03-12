@@ -3,12 +3,11 @@ from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-#database_name = "casting_agency_3"
-#project_dir = os.path.dirname(os.path.abspath(__file__))
-#atabase_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
-
-#database_path = "postgres://{}:{}@{}/{}".format('postgres', 'xxxx', 'localhost:5432', database_name)
-database_path = 'postgres://otbhtrmxtwmtpi:e00a8e4c6deaf0dde8216132acb9cb10f3bfeed738ef018612e387b85044a6d7@ec2-54-145-102-149.compute-1.amazonaws.com:5432/d5a8bq91i5u0hk'
+# database_name = "casting_agency_3"
+# project_dir = os.path.dirname(os.path.abspath(__file__))
+# database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+# database_path = "postgres://{}:{}@{}/{}".format('postgres', 'xxxx', 'localhost:5432', database_name)
+database_path = os.environ['DATABASE_URL']
 db = SQLAlchemy()
 
 '''
@@ -50,7 +49,6 @@ class Movie(db.Model):
         self.title = title
         self.release_date = release_date
 
-
     def details(self):
         return {
             'id': self.id,
@@ -80,11 +78,10 @@ class Actor(db.Model):
 
     scenes_actor = db.relationship('Scene', backref='actors')
 
-    def __init__(self, name, age,gender):
+    def __init__(self, name, age, gender):
         self.name = name
         self.age = age
         self.gender = gender
-
 
     def details(self):
         return {
