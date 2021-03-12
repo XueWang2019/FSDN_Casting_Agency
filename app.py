@@ -29,7 +29,7 @@ def create_app(test_config=None):
         try:
             movies = Movie.query.order_by(Movie.release_date).all()
             movie = []
-            movie = [mov.release_date for mov in movies]
+            movie = [mov.title for mov in movies]
             return jsonify(
                 {
                     "success": True,
