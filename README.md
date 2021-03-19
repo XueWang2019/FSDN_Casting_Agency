@@ -159,4 +159,4 @@ DELET '/actors/<int:id>'
                 
 
 ### Medium story for deployment
-[https://towardsdatascience.com/deploy-a-micro-flask-application-into-heroku-with-postgresql-database-d95fd0c19408](medium)
+[medium](https://towardsdatascience.com/deploy-a-micro-flask-application-into-heroku-with-postgresql-database-d95fd0c19408)
